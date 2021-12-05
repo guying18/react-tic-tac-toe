@@ -31,6 +31,9 @@ ol, ul {
   text-align: center;
   width: 34px;
 }
+.winnerBg {
+  background-color: green;
+}
 
 .square:focus {
   outline: none;
@@ -47,4 +50,8 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+}
+.game-info .highlightCls{
+  /* font-weight: bold; */
+  background-color: red;
 }
