@@ -23,7 +23,6 @@ function Square (props) {
 class Board extends React.Component {
 
   render () {
-
     return (
       [0, 3, 6].map((row, x) => {
         return (
@@ -67,7 +66,8 @@ class Game extends React.Component {
       ],
       stepNumber: 0,
       xIsNext: true,
-      highlightCls: ''
+      highlightCls: '',
+      isAscOrder: true
     }
   }
 
@@ -98,14 +98,23 @@ class Game extends React.Component {
     })
   }
 
+  handleSwitch () {
+    this.setState({
+      isAscOrder: !this.state.isAscOrder
+    })
+  }
+
   render () {
     const history = this.state.history;
+    // console.log('history', history);
     const stepNumber = this.state.stepNumber;
     // console.log('stepNumber', stepNumber);
+    const isAscOrder = this.state.isAscOrder;
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
     // console.log("winnerId", winner.result)
 
+    // const showHistory = this.state.isAscOrder ? history : [...history].reverse();
     const moves = history.map((step, move) => {
       const stepNumber = this.state.stepNumber;
       const highlightCls = this.state.highlightCls;
@@ -118,11 +127,22 @@ class Game extends React.Component {
         </li>
       )
     })
+    if (!isAscOrder) {
+      moves.reverse()
+    }
+
     let status;
-    let hasNull = current.squares.some(item => item === null ? true : false)
-    if (hasNull && winner.result) {
+    // let hasNull = current.squares.some(item => item === null ? true : false)
+    // if (hasNull && winner.result) {
+    //   status = 'Winner: ' + winner.who;
+    // } else if (!hasNull) {
+    //   status = "平局!"
+    // } else {
+    //   status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    // }
+    if (stepNumber !== 9 && winner.result) {
       status = 'Winner: ' + winner.who;
-    } else if (!hasNull) {
+    } else if (stepNumber === 9) {
       status = "平局!"
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
@@ -137,7 +157,8 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <button onClick={() => this.handleSwitch()}>切换</button>
+          <ul>{moves}</ul>
         </div>
       </div>
     );

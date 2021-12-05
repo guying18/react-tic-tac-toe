@@ -32,7 +32,7 @@ ol, ul {
   width: 34px;
 }
 .winnerBg {
-  background-color: green;
+  background-color: rgba(0, 255, 0, 0.5);
 }
 
 .square:focus {
