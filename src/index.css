@@ -53,5 +53,6 @@ ol, ul {
 }
 .game-info .highlightCls{
   /* font-weight: bold; */
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.3);
+  font-weight: bold;
 }

@@ -38,9 +38,9 @@ class Board extends React.Component {
                   winnerBg = "winnerBg"
                 }
                 return (
-                  <Square value={this.props.squares[row + col]}
+                  <Square value={this.props.squares[id]}
                     winnerCls={winnerBg}
-                    onClick={() => this.props.onClick(row + col, coord)}
+                    onClick={() => this.props.onClick(id, coord)}
                     key={col}
                   />
                 )
@@ -120,7 +120,7 @@ class Game extends React.Component {
       const highlightCls = this.state.highlightCls;
       // console.log('move', move);
       const coord = step.coord;
-      const desc = move ? `Go to move # ${move}, coordinate: (${coord.x},${coord.y})` : 'Go to game start';
+      const desc = move ? `Go to move # ${move}, coordinate: (${coord.y + 1},${coord.x + 1})` : 'Go to game start';
       return (
         <li key={move}>
           <button className={move === stepNumber ? highlightCls : ''} onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -140,9 +140,9 @@ class Game extends React.Component {
     // } else {
     //   status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     // }
-    if (stepNumber !== 9 && winner.result) {
+    if (winner.result) {
       status = 'Winner: ' + winner.who;
-    } else if (stepNumber === 9) {
+    } else if (!winner.result && stepNumber === 9) {
       status = "平局!"
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
