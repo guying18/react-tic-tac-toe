@@ -218,7 +218,7 @@ handleClick (i, coord) {
 ```js
 <div className="game-info">
     <div>{status}</div>
-    <button onClick={() => this.handleSwitch()}>切换顺序</button>
+<button onClick={() => this.handleSwitch()}>切换为{isAscOrder ? "降序" : "升序"}</button>
     <ul>{moves}</ul>
 </div>
 ```

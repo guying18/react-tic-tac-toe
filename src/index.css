@@ -49,10 +49,14 @@ ol, ul {
 }
 
 .game-info {
+  flex: 1;
   margin-left: 20px;
 }
 .game-info .highlightCls{
-  /* font-weight: bold; */
   background-color: rgba(255, 0, 0, 0.3);
   font-weight: bold;
+}
+.game-info .switchBtnCls{
+  margin: 10px auto;
+  /* margin-top: 10px; */
 }

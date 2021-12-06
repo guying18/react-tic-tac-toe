@@ -157,7 +157,7 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <button onClick={() => this.handleSwitch()}>切换</button>
+          <button className="switchBtnCls" onClick={() => this.handleSwitch()}>切换为{isAscOrder ? "降序" : "升序"}</button>
           <ul>{moves}</ul>
         </div>
       </div>
